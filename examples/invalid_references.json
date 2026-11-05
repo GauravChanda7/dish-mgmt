@@ -1,0 +1,37 @@
+{
+    "schema_version": "1",
+    "dishes": [
+        {
+            "uid": "Morning Combo",
+            "course": "MAIN",
+            "extra": {},
+            "featured": true,
+            "price": "6.50",
+            "texts": {}
+        },
+        {
+            "uid": "Sourdough Loaf",
+            "course": "MAIN",
+            "extra": {},
+            "featured": true,
+            "price": "5.00",
+            "texts": {}
+        }
+    ],
+    "menus": [
+        {
+            "uid": "Weekday Menu",
+            "dishes": ["Morning Combo", "Sourdough Loaf", "Ghost Dish"]
+        }
+    ],
+    "rules": [
+        {
+            "menu": "Weekend Menu",
+            "active_date": null,
+            "channel": "DELIVERY",
+            "expire_date": null,
+            "priority": 1,
+            "region": "SEA"
+        }
+    ]
+}

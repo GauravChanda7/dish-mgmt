@@ -1,0 +1,26 @@
+{
+    "schema_version": "1",
+    "dishes": [
+        {
+            "uid": "Morning Combo",
+            "course": "TOOLONG",
+            "extra": {"colour": "red"},
+            "featured": true,
+            "price": "6.50",
+            "texts": {"eng": "Coffee and a croissant."}
+        }
+    ],
+    "menus": [
+        {"uid": "Weekday Menu", "dishes": ["Morning Combo"]}
+    ],
+    "rules": [
+        {
+            "menu": "Weekday Menu",
+            "active_date": "2026-01-01T00:00:00.5+00:00",
+            "channel": null,
+            "expire_date": null,
+            "priority": 1,
+            "region": null
+        }
+    ]
+}

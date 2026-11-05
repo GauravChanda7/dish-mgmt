@@ -1,0 +1,92 @@
+{
+    "schema_version": "1",
+    "dishes": [
+        {
+            "uid": "Iced Latte",
+            "course": "DRINK",
+            "extra": {},
+            "featured": true,
+            "price": "4.25",
+            "texts": {
+                "en": "Espresso over milk and ice."
+            }
+        },
+        {
+            "uid": "Lemon Tart",
+            "course": "DSRT",
+            "extra": {
+                "note": "Contains nuts"
+            },
+            "featured": true,
+            "price": "3.75",
+            "texts": {
+                "en": "Tart with lemon curd."
+            }
+        },
+        {
+            "uid": "Morning Combo",
+            "course": "MAIN",
+            "extra": {
+                "badge": "Fresh"
+            },
+            "featured": true,
+            "price": "6.50",
+            "texts": {
+                "en": "Coffee and a croissant.",
+                "es": "Cafe y croissant."
+            }
+        },
+        {
+            "uid": "Sourdough Loaf",
+            "course": "MAIN",
+            "extra": {},
+            "featured": false,
+            "price": "5.00",
+            "texts": {}
+        }
+    ],
+    "menus": [
+        {
+            "uid": "Holiday Menu",
+            "dishes": [
+                "Iced Latte",
+                "Lemon Tart",
+                "Sourdough Loaf"
+            ]
+        },
+        {
+            "uid": "Weekday Menu",
+            "dishes": [
+                "Iced Latte",
+                "Morning Combo",
+                "Sourdough Loaf"
+            ]
+        }
+    ],
+    "rules": [
+        {
+            "active_date": "2026-01-01T00:00:00+00:00",
+            "channel": null,
+            "expire_date": null,
+            "menu": "Weekday Menu",
+            "priority": 1,
+            "region": null
+        },
+        {
+            "active_date": "2026-12-20T00:00:00+00:00",
+            "channel": null,
+            "expire_date": null,
+            "menu": "Holiday Menu",
+            "priority": 3,
+            "region": "SEA"
+        },
+        {
+            "active_date": "2026-12-20T00:00:00+00:00",
+            "channel": "DELIVERY",
+            "expire_date": "2027-01-02T00:00:00+00:00",
+            "menu": "Holiday Menu",
+            "priority": 5,
+            "region": "SEA"
+        }
+    ]
+}

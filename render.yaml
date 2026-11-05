@@ -1,0 +1,22 @@
+# Render Blueprint: creates the web service and the Postgres database together.
+databases:
+  - name: dish-db
+    databaseName: dish
+    plan: free
+
+services:
+  - type: web
+    name: dish-mgmt
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    # Seeding only runs against an empty database, so redeploys don't touch data.
+    startCommand: python -m app.seed --if-empty && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /v1/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dish-db
+          property: connectionString

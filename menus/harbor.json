@@ -1,0 +1,85 @@
+{
+    "schema_version": "1",
+    "dishes": [
+        {
+            "uid": "Butter Tart",
+            "course": "DSRT",
+            "extra": {},
+            "featured": true,
+            "price": "2.50",
+            "texts": {
+                "en": "Flaky pastry with a gooey filling.",
+                "fr": "Pate feuilletee et garniture fondante."
+            }
+        },
+        {
+            "uid": "Maple Danish",
+            "course": "PASTR",
+            "extra": {
+                "badge": "Local",
+                "vegan": true
+            },
+            "featured": true,
+            "price": "4.25",
+            "texts": {
+                "en": "Danish glazed with maple syrup.",
+                "fr": "Danoise glacee au sirop d'erable."
+            }
+        },
+        {
+            "uid": "Poutine Bowl",
+            "course": "MAIN",
+            "extra": {
+                "note": "Contains dairy"
+            },
+            "featured": false,
+            "price": "9.99",
+            "texts": {
+                "en": "Fries, curds and gravy."
+            }
+        }
+    ],
+    "menus": [
+        {
+            "uid": "All Day Menu",
+            "dishes": [
+                "Butter Tart",
+                "Maple Danish",
+                "Poutine Bowl"
+            ]
+        },
+        {
+            "uid": "Late Night Menu",
+            "dishes": [
+                "Butter Tart",
+                "Poutine Bowl"
+            ]
+        }
+    ],
+    "rules": [
+        {
+            "active_date": "2026-01-01T00:00:00+00:00",
+            "channel": null,
+            "expire_date": null,
+            "menu": "All Day Menu",
+            "priority": 1,
+            "region": null
+        },
+        {
+            "active_date": "2026-01-01T00:00:00+00:00",
+            "channel": null,
+            "expire_date": null,
+            "menu": "Late Night Menu",
+            "priority": 2,
+            "region": "YVR"
+        },
+        {
+            "active_date": "2026-03-01T00:00:00+00:00",
+            "channel": "DINEIN",
+            "expire_date": null,
+            "menu": "Late Night Menu",
+            "priority": 4,
+            "region": null
+        }
+    ]
+}
