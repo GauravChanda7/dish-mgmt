@@ -4,6 +4,19 @@ A small FastAPI + SQLAlchemy backend that stores a brand's menu config (JSON) in
 
 ## Run it
 
+Windows (PowerShell), from the project root:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\pip install -r requirements.txt
+
+.venv\Scripts\python -m app.seed                   # create tables, load menus/*.json
+.venv\Scripts\uvicorn app.main:app --reload        # http://127.0.0.1:8000/docs
+.venv\Scripts\python -m pytest                     # 26 tests, in-memory DB
+```
+
+macOS / Linux:
+
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
@@ -12,6 +25,8 @@ python3 -m venv .venv
 .venv/bin/uvicorn app.main:app --reload            # http://127.0.0.1:8000/docs
 .venv/bin/python -m pytest                         # 26 tests, in-memory DB
 ```
+
+The virtual environment is not portable between operating systems. Delete `.venv` and recreate it if you move the project to another machine.
 
 `app.seed` is safe to re-run. To start over, delete `dish_mgmt.db` and seed again.
 
@@ -28,8 +43,12 @@ The brand goes in the `brandId` query parameter (case-insensitive), like `partne
 
 To call them without typing curl, run the interactive helper (like `scripts/offerman_api.py` in the original). It lists the endpoints, asks for the brand and a JSON file, and prints the response. `PUT` asks for confirmation first. Set `DISH_API_URL` if the server is not on `http://127.0.0.1:8000`.
 
+```powershell
+.venv\Scripts\python scripts\dish_api.py     # Windows
+```
+
 ```bash
-.venv/bin/python scripts/dish_api.py
+.venv/bin/python scripts/dish_api.py         # macOS / Linux
 ```
 
 A body that fails validation returns 422 with every problem listed. Examples to try with validate:
@@ -83,8 +102,12 @@ Notes:
 3. On first start, `python -m app.seed --if-empty` creates the tables and loads `menus/*.json`. Later restarts skip loading, so rule rows don't pile up.
 4. Check `https://<your-service>.onrender.com/v1/health`, then point the helper at it:
 
+```powershell
+$env:DISH_API_URL="https://<your-service>.onrender.com"; .venv\Scripts\python scripts\dish_api.py   # Windows
+```
+
 ```bash
-DISH_API_URL=https://<your-service>.onrender.com .venv/bin/python scripts/dish_api.py
+DISH_API_URL=https://<your-service>.onrender.com .venv/bin/python scripts/dish_api.py               # macOS / Linux
 ```
 
 Notes:
