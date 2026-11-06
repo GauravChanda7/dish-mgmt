@@ -37,6 +37,7 @@ The brand goes in the `brandId` query parameter (case-insensitive), like `partne
 | Endpoint | Original | What it does |
 |---|---|---|
 | `GET /v1/health` | `GET /v1/health` | `{"status": "ok"}` |
+| `GET /v1/brands` | partner-info `GET /v1/partner` | Lists every brand as `{"brandId", "currency"}`, sorted by ID. |
 | `GET /v1/menus/db?brandId=SUNRISE` | `GET /v1/offers/rbo` | Builds the brand's JSON from the tables. Unknown brand: 404. |
 | `POST /v1/menus/validate?brandId=SUNRISE` | `POST /v1/offers/validate` | Checks the body, runs the whole load, then rolls back. Returns warnings and what would change. |
 | `PUT /v1/menus/db?brandId=SUNRISE` | `PUT /v1/offers/rbo` | Checks the body and saves it in one transaction. |

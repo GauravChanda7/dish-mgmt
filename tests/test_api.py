@@ -53,6 +53,19 @@ def test_health(client):
     assert client.get("/v1/health").json() == {"status": "ok"}
 
 
+# ---- brands ---------------------------------------------------------------
+
+
+def test_list_brands(client):
+    response = client.get("/v1/brands")
+    assert response.status_code == 200
+    assert response.json() == [
+        {"brandId": "HARBOR", "currency": "CAD"},
+        {"brandId": "ORCHARD", "currency": "EUR"},
+        {"brandId": "SUNRISE", "currency": "USD"},
+    ]
+
+
 # ---- GET ------------------------------------------------------------------
 
 

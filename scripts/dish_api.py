@@ -22,6 +22,7 @@ ENDPOINTS = {
     "2": ("GET  /v1/menus/db", "GET", "/v1/menus/db", True, False, False),
     "3": ("POST /v1/menus/validate", "POST", "/v1/menus/validate", True, True, False),
     "4": ("PUT  /v1/menus/db", "PUT", "/v1/menus/db", True, True, True),
+    "5": ("GET  /v1/brands", "GET", "/v1/brands", False, False, False),
 }
 
 
@@ -72,9 +73,17 @@ def main() -> int:
         sys.exit(f"Could not connect to {BASE_URL}. Is the server running?")
     print(f"HTTP {resp.status_code}")
     try:
-        print(json.dumps(resp.json(), indent=2))
+        payload = resp.json()
     except ValueError:
         print(resp.text)
+        return 0 if resp.is_success else 1
+    if path == "/v1/brands" and resp.is_success:
+        # Like list_partners.py in the original: a short list instead of raw JSON.
+        print(f"{len(payload)} brands")
+        for brand in payload:
+            print(f"  {brand['brandId']:<10} {brand['currency']}")
+    else:
+        print(json.dumps(payload, indent=2))
     return 0 if resp.is_success else 1
 
 

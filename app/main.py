@@ -1,6 +1,7 @@
 """The FastAPI entrypoint.
 
     GET  /v1/health
+    GET  /v1/brands                          list the brands
     GET  /v1/menus/db?brandId=SUNRISE        read a brand's menu config
     POST /v1/menus/validate?brandId=SUNRISE  validate and dry-run a config, nothing saved
     PUT  /v1/menus/db?brandId=SUNRISE        validate and save a config
@@ -9,10 +10,11 @@
 from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI, HTTPException, Query
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from . import database
-from .models import Base
+from .models import Base, Brand
 from .schemas import MenuConfig
 from .service import BrandNotFound, apply_menu_config, get_menu_config
 
@@ -32,6 +34,13 @@ BrandId = Query(..., alias="brandId", description="The ID of the brand, e.g. SUN
 @app.get("/v1/health")
 def health():
     return {"status": "ok"}
+
+
+@app.get("/v1/brands")
+def v1_get_brands(db: Session = Depends(database.get_db)) -> list[dict]:
+    """List every brand, like the partner-info service's GET /v1/partner."""
+    brands = db.scalars(select(Brand).order_by(Brand.brand_id)).all()
+    return [{"brandId": b.brand_id, "currency": b.currency} for b in brands]
 
 
 @app.get("/v1/menus/db")
