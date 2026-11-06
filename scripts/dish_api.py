@@ -1,7 +1,7 @@
 """Interactive helper to hit the dish-mgmt API endpoints.
 
 Asks which endpoint to call and for any inputs it needs, then prints the
-response. The server URL comes from DISH_API_URL (default http://127.0.0.1:8000).
+response. The server URL comes from DISH_API_URL (default https://dish-mgmt.onrender.com).
 
     .venv/bin/python scripts/dish_api.py
 """
@@ -14,7 +14,7 @@ from pathlib import Path
 import httpx
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-BASE_URL = os.environ.get("DISH_API_URL", "http://127.0.0.1:8000").rstrip("/")
+BASE_URL = os.environ.get("DISH_API_URL", "https://dish-mgmt.onrender.com").rstrip("/")
 
 # key -> (label, method, path, needs_brand, needs_body, writes)
 ENDPOINTS = {
